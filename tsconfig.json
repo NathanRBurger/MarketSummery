@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "rootDir": "./app",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["app/*"]
+    },
+    "types": [],
+    "resolveJsonModule": true
+  },
+  "include": ["app/**/*"],
+  "exclude": ["node_modules", "node_modules/@types"]
+}
