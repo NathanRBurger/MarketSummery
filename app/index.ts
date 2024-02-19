@@ -15,7 +15,7 @@ async function CalculateDifferences() {
   if (VALRData.length > ChainExData.length) {
      for (let i = 0; i < VALRData.length; i++) {
         for (let j = 0; j < ChainExData.length; j++) {
-          if (VALRData[i].currency_code=ChainExData[j].currency_code) {
+          if (VALRData[i].currency_code==ChainExData[j].currency_code) {
             console.log("for " + VALRData[i].currency_code);
             console.log("----------------------------------------------------------------------------");
             console.log("Header:         VALR response       Chainex response    Comparison");
@@ -23,8 +23,8 @@ async function CalculateDifferences() {
             console.log("top_bid:        " + VALRData[i].top_bid.padEnd(20) + ChainExData[j].top_bid.padEnd(20) + (ChainExData[j].top_bid > VALRData[i].top_bid ? "CX" : "VALR"));
             console.log("last_price:     " + VALRData[i].last_price.padEnd(20) + ChainExData[j].last_price.padEnd(20) + (ChainExData[j].last_price > VALRData[i].last_price ? "CX" : "VALR"));
             console.log("volume_amount:  " + VALRData[i].volume_amount.padEnd(20) + ChainExData[j].volume_amount.padEnd(20) + (ChainExData[j].volume_amount > VALRData[i].volume_amount ? "CX" : "VALR"));
-            console.log("highPrice:      " + VALRData[i].highPrice.padEnd(20) + ChainExData[j].highPrice.padEnd(20) + (ChainExData[j].highPrice > VALRData[i].highPrice ? "CX" : "VALR"));
-            console.log("lowPrice:       " + VALRData[i].lowPrice.padEnd(20) + ChainExData[j].lowPrice.padEnd(20) + (ChainExData[j].lowPrice > VALRData[i].lowPrice ? "CX" : "VALR"));
+            console.log("high_price:      " + VALRData[i].high_price.padEnd(20) + ChainExData[j].high_price.padEnd(20) + (ChainExData[j].high_price > VALRData[i].high_price ? "CX" : "VALR"));
+            console.log("low_price:       " + VALRData[i].low_price.padEnd(20) + ChainExData[j].low_price.padEnd(20) + (ChainExData[j].low_price > VALRData[i].low_price ? "CX" : "VALR"));
             console.log("change:         " + VALRData[i].change.padEnd(20) + ChainExData[j].change.padEnd(20) + (ChainExData[j].change > VALRData[i].change ? "CX" : "VALR"));
             console.log("----------------------------------------------------------------------------");
           }
@@ -33,7 +33,7 @@ async function CalculateDifferences() {
   } else {
     for (let i = 0; i < ChainExData.length; i++) {
       for (let j = 0; j < VALRData.length; j++) {
-        if (ChainExData[i].currency_code=VALRData[j].currency_code) {
+        if (ChainExData[i].currency_code==VALRData[j].currency_code) {
           console.log("for " + ChainExData[i].currency_code);
           console.log("----------------------------------------------------------------------------");
           console.log("Header        VALR response       Chainex response    Comparison");
@@ -41,8 +41,8 @@ async function CalculateDifferences() {
           console.log("top_bid       " + VALRData[j].top_bid.padEnd(20) + ChainExData[i].top_bid.padEnd(20) + (ChainExData[i].top_bid > VALRData[j].top_bid ? "CX" : "VALR"));
           console.log("last_price    " + VALRData[j].last_price.padEnd(20) + ChainExData[i].last_price.padEnd(20) + (ChainExData[i].last_price > VALRData[j].last_price ? "CX" : "VALR"));
           console.log("volume_amount " + VALRData[j].volume_amount.padEnd(20) + ChainExData[i].volume_amount.padEnd(20) + (ChainExData[i].volume_amount > VALRData[j].volume_amount ? "CX" : "VALR"));
-          console.log("highPrice     " + VALRData[j].highPrice.padEnd(20) + ChainExData[i].highPrice.padEnd(20) + (ChainExData[i].highPrice > VALRData[j].highPrice ? "CX" : "VALR"));
-          console.log("lowPrice      " + VALRData[j].lowPrice.padEnd(20) + ChainExData[i].lowPrice.padEnd(20) + (ChainExData[i].lowPrice > VALRData[j].lowPrice ? "CX" : "VALR"));
+          console.log("highPrice     " + VALRData[j].high_price.padEnd(20) + ChainExData[i].high_price.padEnd(20) + (ChainExData[i].high_price > VALRData[j].high_price ? "CX" : "VALR"));
+          console.log("lowPrice      " + VALRData[j].low_price.padEnd(20) + ChainExData[i].low_price.padEnd(20) + (ChainExData[i].low_price > VALRData[j].low_price ? "CX" : "VALR"));
           console.log("change        " + VALRData[j].change.padEnd(20) + ChainExData[i].change.padEnd(20) + (ChainExData[i].change > VALRData[j].change ? "CX" : "VALR"));
           console.log("----------------------------------------------------------------------------");
         }
@@ -62,9 +62,9 @@ async function getChainExMarketSummery(): Promise<MyMarketSummery[]> {
   response.data.data.forEach((element: ChainExMarketData) => {
     const temp: MyMarketSummery = {
       change: element.change,
-      highPrice: element["24hhigh"],
+      high_price: element["24hhigh"],
       last_price: element.last_price,
-      lowPrice: element["24hlow"],
+      low_price: element["24hlow"],
       top_ask: element.top_ask,
       top_bid: element.top_bid,
       volume_amount: element.volume_amount,
@@ -88,9 +88,9 @@ async function getVALRMarketSummery(): Promise<MyMarketSummery[]> {
   response.data.forEach((element: VALRMarketSummery) => {
     const temp: MyMarketSummery = {
       change:element.changeFromPrevious,
-      highPrice:element.highPrice,
+      high_price:element.highPrice,
       last_price: element.lastTradedPrice,
-      lowPrice:element.lowPrice ,
+      low_price:element.lowPrice ,
       top_ask: element.askPrice,
       top_bid: element.bidPrice,
       volume_amount: element.baseVolume,

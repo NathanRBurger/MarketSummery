@@ -3,8 +3,8 @@
   top_bid: string;
   last_price: string;
   volume_amount: string;
-  highPrice: string;
-  lowPrice: string;
+  high_price: string;
+  low_price: string;
   change: string;
   currency_code: string;
 }
