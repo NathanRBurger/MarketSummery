@@ -11,7 +11,6 @@ CalculateDifferences();
 async function CalculateDifferences() {
   var ChainExData = await getChainExMarketSummery();
   var VALRData = await getVALRMarketSummery();
-  
   if (VALRData.length > ChainExData.length) {
      for (let i = 0; i < VALRData.length; i++) {
         for (let j = 0; j < ChainExData.length; j++) {
@@ -68,7 +67,7 @@ async function getChainExMarketSummery(): Promise<MyMarketSummery[]> {
       top_ask: element.top_ask,
       top_bid: element.top_bid,
       volume_amount: element.volume_amount,
-      currency_code: element.code,
+      currency_code: element.market.replace("/",""),
     };
 
     data.push(temp);
